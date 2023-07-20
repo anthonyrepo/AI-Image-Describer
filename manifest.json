@@ -17,5 +17,6 @@
         },
         "default_title": "Click Me",
         "default_popup": "popup.html"
-    }
+    },
+    "description": "This extension uses Google Cloud Vision to analyze a image and provide a description of said image. This extension's goal is to help out vision impaired individuals to would benefit from additional context to a visual"
 }
