@@ -8,16 +8,6 @@
         "48": "images/icon48.png",
         "128": "images/icon128.png"
     },
-    "action": {
-        "default_icon": {
-            "16": "images/icon16.png",
-            "32": "images/icon32.png",
-            "48": "images/icon48.png",
-            "128": "images/icon128.png"
-        },
-        "default_title": "Click Me",
-        "default_popup": "popup.html"
-    },
     "description": "This extension uses Google Cloud Vision to analyze a image and provide a description of said image. This extension's goal is to help out vision impaired individuals to would benefit from additional context to a visual",
     "content_scripts": [
         {
