@@ -2,7 +2,6 @@
 const google_vision_api_key = "";
 const google_vision_api_url = "https://vision.googleapis.com/v1/images:annotate?key=";
 
-//API End points
 const openai_api_key = "";
 const openai_api_url = "https://api.openai.com/v1/chat/completions";
 
