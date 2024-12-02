@@ -1,6 +1,4 @@
 // Insert your own corresponding API keys here
-// const google_vision_api_key = "";
-// const google_vision_api_url = "https://vision.googleapis.com/v1/images:annotate?key=";
 
 const openai_api_key = "";
 const openai_api_url = "https://api.openai.com/v1/chat/completions";
@@ -16,27 +14,18 @@ const figures = document.querySelectorAll("figure")
 if (figures) {
     //For each figure, add a div element which will show a button to display desciptions in
     figures.forEach(element => {
-        // const div = document.createElement("div");
         const cap = document.createElement("figcaption")
         const button = document.createElement("button");
 
-        // div.style.cssText = "border-style: solid; border-width: 2px; width: 75%; margin: 0 auto 0.75em auto; text-align: center; line-height: normal;"
-        // div.style.cssText = "border-style: solid; border-width: 2px; text-align: center; line-height: normal;"
         cap.style.cssText = "border-style: solid; border-width: 2px; text-align: center; line-height: normal;"
         button.style.cssText = "margin: 0.75em 0 0.75em 0"
         button.innerHTML = "Get Description";
-        // button.addEventListener("click", () => {describeImage(element, div)})
         button.addEventListener("click", () => {describeImage(element, cap)})
         
-        // div.appendChild(button)
         cap.appendChild(button)
-        // element.insertAdjacentElement("afterend", div);
-        // element.insertAdjacentElement("beforeend", div);
         element.insertAdjacentElement("beforeend", cap)
     })
 }
-// console.log(figures.length)
-// console.log("test")
 
 //When button is clicked, do a bunch of work to get image descriptions 
 // const describeImage = async (element, div) => {
@@ -47,46 +36,6 @@ const describeImage = async (element, cap) => {
     cap.appendChild(paragraph);
 
     let image_url = element.firstChild.firstChild.src;
-
-    console.log(image_url);
-    
-//     //Data to send to Google Cloud Vision API endpoint
-//     const google_vision_api_data = {
-//         "requests":[
-//             {
-//                 "image":{
-//                     "source":{
-//                         "imageUri":element.firstChild.src
-//                     }
-//                 },
-//                 "features":[
-//                     {
-//                         "type":"LABEL_DETECTION",
-//                         "maxResults":10
-//                     },
-//                 ]
-//             }
-//         ]
-//     }
-//     const google_api_post_object = {
-//         method: "POST",
-//         headers: {
-//             "Content-Type":"application/json"
-//         },
-//         body: JSON.stringify(google_vision_api_data)
-//     }
-
-//     //Make request to Google Cloud Vision API to generate labels, or desciptors, of provided image
-//     let info = await postData(google_vision_api_url + google_vision_api_key,google_api_post_object)
-//     let labels = info.responses[0].labelAnnotations;
-    
-//     //Filter out descriptors from response
-//     let descriptors = [];
-//     for(let i = 0; i < labels.length; i++) {
-//         if(labels[i].score >= 0.89) {
-//             descriptors.push(labels[i].description)
-//         }
-//     }
 
     //Form prompt using descriptors to send to ChatGPT
     // let content_string = "Give three descriptions of a image highlighting any or all of the following features: ";
@@ -156,22 +105,7 @@ const describeImage = async (element, cap) => {
     //Remove "Please Wait!" from div, since we no longer need to wait
     paragraph.remove();
 
-    //Finally, insert desciptions of the image onto the webpage
-    // for(let i = 0; i < individual_descriptions.length; i++) {
-    //     if(individual_descriptions[i] != "") {
-    //         const p = document.createElement("p");
-    //         p.textContent = individual_descriptions[i]
-    //         div.appendChild(p);
-    //     }
-    // }
-
-    // const p = document.createElement("p");
-    // p.textContent = info.choices[0].message.content;
-    // div.appendChild(p);
     const fc = document.createElement("figcaption");
     fc.textContent = info.choices[0].message.content;
-    // div.appendChild(fc);
     cap.appendChild(fc);
-
-    console.log(info)
 }
