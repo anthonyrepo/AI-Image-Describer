@@ -28,40 +28,12 @@ if (figures) {
 }
 
 //When button is clicked, do a bunch of work to get image descriptions 
-// const describeImage = async (element, div) => {
 const describeImage = async (element, cap) => {
     const paragraph = document.createElement("p");
     paragraph.textContent = "Please Wait!";
-    // div.appendChild(paragraph);
     cap.appendChild(paragraph);
 
     let image_url = element.firstChild.firstChild.src;
-
-    //Form prompt using descriptors to send to ChatGPT
-    // let content_string = "Give three descriptions of a image highlighting any or all of the following features: ";
-    // for(let i = 0; i < descriptors.length - 1; i++) {
-    //     console.log(descriptors[i])
-    //     content_string += descriptors[i];
-    //     content_string += ", "
-    // }
-    // content_string += "and "
-    // content_string += descriptors[descriptors.length - 1];
-
-    //Data to send to OpenAI(ChatGPT) endpoint
-    // const openai_api_data = {
-    //     "model": "gpt-3.5-turbo",
-    //     "messages": [
-    //         {
-    //             "role": "system",
-    //             "content": "You are a helpful assistant."
-    //         },
-    //         {
-    //             "role": "user",
-    //             "content": content_string
-    //         }
-    //     ]
-    // }
-    // let image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Accessibility_Braille_Elevator.jpg/220px-Accessibility_Braille_Elevator.jpg"
 
     const openai_api_data = {
         "model": "gpt-4o",
@@ -92,15 +64,7 @@ const describeImage = async (element, cap) => {
         body: JSON.stringify(openai_api_data)
     }
 
-    //Make request to OpenAI(ChatGPT) endpoint to get image descriptions using Google Cloud Vision API's labels
     let info = await postData(openai_api_url, openai_api_post_object)
-
-    //Parse image descriptions from OpenAI(ChatGPT) response
-    // const descriptions = info.choices[0].message.content
-    // const individual_descriptions = descriptions.split(/\r?\n/);
-    // for(let i = 0; i < individual_descriptions.length; i++) {
-    //     individual_descriptions[i] = individual_descriptions[i].substr(3)
-    // }
 
     //Remove "Please Wait!" from div, since we no longer need to wait
     paragraph.remove();
