@@ -1,4 +1,4 @@
-# AI-Image-Describer
+# AI Image Describer / Accessibility Tool Google Chrome Extension
 A Google Chrome extension that provides AI generated desciptions for images on a webpage.
 
 ## Objective
